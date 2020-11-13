@@ -9,24 +9,28 @@ export default class JsonShcemaPropertiesBuilder {
     return this.properties;
   }
 
-  loadProperties(schema, level = []) {
+  loadProperties(schema, level = [], parent = null) {
     const properties = this.getSchemaPropertiesDef(schema)
     const required = schema.required || []
     for (let propKey in properties) {
       const propDef = properties[propKey]
       const isReq = required.indexOf(propKey) !== -1
-      const newProps = new Property(propKey, propDef.description, isReq, level, this.getExtraPropterties(propDef))
+      const disabled = propDef.type === "object" || ((propDef.items) && propDef.items.type === "object")
+      const complexArray = propDef.type === "array" && disabled
+      console.log(propKey, parent)
+      const newProps = new Property(propKey, propDef.description, isReq, level,
+        this.getExtraPropterties(propDef), complexArray, disabled, parent)
       this.properties.push(newProps)
-      this.processChildren(propDef, level, propKey)
+      this.processChildren(propDef, level, propKey, newProps)
     }
   }
 
-  processChildren(propDef, level, propKey) {
+  processChildren(propDef, level, propKey, parent) {
     const newLevel = [...level, propKey]
     if (propDef.type === "object")
-      this.loadProperties(propDef, newLevel)
+      this.loadProperties(propDef, newLevel, parent)
     if (propDef.type === "array")
-      this.loadProperties(propDef.items, newLevel)
+      this.loadProperties(propDef.items, newLevel, parent)
   }
 
 
@@ -36,8 +40,10 @@ export default class JsonShcemaPropertiesBuilder {
     return schema.properties;
   }
 
-  getExtraPropterties() {
-    return null;
+  getExtraPropterties(propDef) {
+    return {
+      type: propDef.type
+    }
   }
 
 }
