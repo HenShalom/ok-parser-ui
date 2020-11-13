@@ -1,7 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
-
 
 .box-outer * {
 	margin: 0;
@@ -36,8 +33,16 @@
 	font-size: 2.5vh;
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
+}
 
-
+.main_box.disabled {
+	background: #790c5a;
+	border: 3px dashed #e6739f;
+	color: #fff;
+	cursor: no-drop;
+}
+.main_box.array {
+	border: 3px dashed blue;
 }
 .bar {
 	position: absolute;

@@ -1,35 +1,23 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
 import { BASE_OFFSET, BASE_WIDTH } from '../../../consts/const'
-
+import { getPropType } from './utils'
 
 function DragItem({ property }) {
 
   const [{ draging }, dragRef] = useDrag({
-    item: { type: 't', property },
+    item: { type: getPropType(property, "drag"), property },
     collect: (monitor) => ({
       draging: !!monitor.isDragging()
     })
   })
 
   const offset = property.level.length * BASE_OFFSET
-
-  return (
-    <div className='box-outer' ref={dragRef} >
-      <div className='main_box' style={{ width: `calc(${BASE_WIDTH} - ${offset}px)`, marginLeft: offset }}>
-        {draging &&
-          <React.Fragment>
-            {/* <div className='bar-r top-r'></div>
-            <div className='bar-r right-r delay'></div>
-            <div className='bar-r bottom-r delay'></div>
-            <div className='bar-r left-r'></div> */}
-          </React.Fragment>
-        }
-        {property.key}
-      </div>
+  return <div className={`box-outer ${property.disabled && "disabled"} `} ref={dragRef}  >
+    <div className={`main_box ${property.disabled && "disabled"} ${property.childOfComplex && "array"}`} style={{ width: `calc(${BASE_WIDTH} - ${offset}px)`, marginLeft: offset }}>
+      {property.key}
     </div>
-
-  );
+  </div>
 }
 
 export default DragItem;

@@ -1,25 +1,26 @@
 import React from 'react'
 import { useDrop } from 'react-dnd'
 import { BASE_OFFSET, BASE_WIDTH } from '../../../consts/const'
-import { getPropType } from './utils'
+import { DEFAULT } from './utils'
 
+function Transformation() {
 
-function DropItem({ property, addPair }) {
   const [{ isOver, canDrop }, dropRef] = useDrop({
-    accept: getPropType(property),
+    accept:  DEFAULT,
     canDrop: () => true,
-    drop: (value) => addPair(value.property, property),
+    drop: (value) => {
+      console.log(value)
+    },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
       canDrop: !!monitor.canDrop(),
     }),
   });
 
-  const offset = property.level.length * BASE_OFFSET
 
 
-  return (<div className={`box-outer ${property.disabled && "disabled"}`} ref={dropRef} >
-    <div className={`main_box ${property.disabled && "disabled"} ${property.childOfComplex && "array"}`} style={{ width: `calc(${BASE_WIDTH} - ${offset}px)`, marginLeft: offset }}>
+  return (<div className={`box-outer `} ref={dropRef} >
+    <div className={`main_box `} >
       {canDrop &&
         <React.Fragment>
           <div className='bar top'></div>
@@ -29,12 +30,10 @@ function DropItem({ property, addPair }) {
         </React.Fragment>
       }
       <span>
-        {property.key}
+        test
       </span>
     </div>
-  </div>
-
-  );
+  </div>)
 }
 
-export default DropItem;
+export default Transformation;
