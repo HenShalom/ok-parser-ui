@@ -65,7 +65,7 @@
 .pairs-container {
 	display: flex;
 	flex-direction: column;
-	height: 95%;
+	height: 64vh;
 	overflow: auto;
 	width: 90%;
 	margin: auto;
@@ -78,7 +78,7 @@
 .pair {
 	display: flex;
 	width: 90%;
-	margin: auto;
+	margin: 0 auto;
 	height: fit-content;
 	justify-content: space-around;
 	align-items: center;
