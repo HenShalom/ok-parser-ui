@@ -17,7 +17,6 @@ export default class JsonShcemaPropertiesBuilder {
       const isReq = required.indexOf(propKey) !== -1
       const disabled = propDef.type === "object" || ((propDef.items) && propDef.items.type === "object")
       const complexArray = propDef.type === "array" && disabled
-      console.log(propKey, parent)
       const newProps = new Property(propKey, propDef.description, isReq, level,
         this.getExtraPropterties(propDef), complexArray, disabled, parent)
       this.properties.push(newProps)

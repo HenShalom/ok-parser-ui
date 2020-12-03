@@ -36,6 +36,30 @@ const deptSchema = {
           },
         }
       }
+    },
+    "other":{
+      "type": "object",
+      "properties": {
+        "person":{
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the vegetable."
+            },
+            "lastName": {
+              "type": "string",
+              "description": "Do I like this vegetable?"
+            },
+            "hobbies": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

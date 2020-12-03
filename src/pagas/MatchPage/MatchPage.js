@@ -12,6 +12,8 @@ function MatchPage({ jsonSchema, inputProperties }) {
   const [pairsWindowOpen, setPairsWindowOpen] = useState(false)
   const [properties, setProperties] = useState([])
   const [pairs, setpairs] = useState([])
+  const [transformItem, setTransformItem] = useState(null)
+
 
   useEffect(() => {
     const builder = new JsonShcemaPropertiesBuilder()
@@ -21,19 +23,24 @@ function MatchPage({ jsonSchema, inputProperties }) {
 
 
   const addPair = (matchProperty, currentProperty) => {
+    setTransformItem(null)
     //todo: add check of type and so on 
     matchProperty.hideProperty()
     currentProperty.hideProperty()
     setpairs([...pairs, [matchProperty, currentProperty]])
-
   }
+
+  const updateTrasnformItem = (value) => {
+    setTransformItem(value)
+  }
+
   const on = true
   return (
     <div className="match-page">
       <div className="match-container">
         <ComparePanle properties={inputProperties} />
-        <Transformation />
-        <JsonSchemaPanle properties={properties} addPair={addPair} />
+        <Transformation updateTrasnformItem={updateTrasnformItem} dropedItem={transformItem} />
+        <JsonSchemaPanle properties={properties} addPair={addPair} customDrop={transformItem} />
 
       </div>
 

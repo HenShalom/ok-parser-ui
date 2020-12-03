@@ -144,6 +144,26 @@
 	top: 0;
 }
 
+.transform-icon {
+	width: 8vw;
+}
+.transform-icon.pre-active {
+	animation: spin 3s linear infinite;
+}
+
+.transform-icon.active {
+	animation: spin 3s linear infinite;
+	filter: invert(14%) sepia(100%) saturate(7240%) hue-rotate(321deg) brightness(85%) contrast(89%);
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
 /* scroll bar */
 
 /*

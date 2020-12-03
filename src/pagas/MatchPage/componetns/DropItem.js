@@ -4,9 +4,11 @@ import { BASE_OFFSET, BASE_WIDTH } from '../../../consts/const'
 import { getPropType } from './utils'
 
 
-function DropItem({ property, addPair }) {
+function DropItem({ property, addPair, customDrop }) {
+  const accept = getPropType(property)
+  const canClick = customDrop && accept.indexOf(customDrop.type) !== -1
   const [{ isOver, canDrop }, dropRef] = useDrop({
-    accept: getPropType(property),
+    accept,
     canDrop: () => true,
     drop: (value) => addPair(value.property, property),
     collect: (monitor) => ({
@@ -15,12 +17,18 @@ function DropItem({ property, addPair }) {
     }),
   });
 
+  const checkCustomDrop = () => {
+    if (canClick) {
+      addPair(customDrop.property, property)
+    }
+  }
+
   const offset = property.level.length * BASE_OFFSET
 
 
-  return (<div className={`box-outer ${property.disabled && "disabled"}`} ref={dropRef} >
+  return (<div className={`box-outer ${property.disabled && "disabled"}`} ref={dropRef} onClick={checkCustomDrop}>
     <div className={`main_box ${property.disabled && "disabled"} ${property.childOfComplex && "array"}`} style={{ width: `calc(${BASE_WIDTH} - ${offset}px)`, marginLeft: offset }}>
-      {canDrop &&
+      {(canDrop || canClick) &&
         <React.Fragment>
           <div className='bar top'></div>
           <div className='bar right delay'></div>
