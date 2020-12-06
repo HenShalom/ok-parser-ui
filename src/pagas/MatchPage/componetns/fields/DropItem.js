@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDrop } from 'react-dnd'
-import { BASE_OFFSET, BASE_WIDTH } from '../../../consts/const'
-import { getPropType } from './utils'
+import { BASE_OFFSET, BASE_WIDTH } from '../../../../consts/const'
+import { getPropType } from '../utils'
 
 
 function DropItem({ property, addPair, customDrop }) {

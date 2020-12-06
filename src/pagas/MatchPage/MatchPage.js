@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import JsonSchemaPanle from './componetns/JsonSchemaPanle'
-import ComparePanle from './componetns/ComparePanle'
-import Transformation from './componetns/Transformation'
+import JsonSchemaPanle from './componetns/fields/JsonSchemaPanle'
+import ComparePanle from './componetns/fields/ComparePanle'
+import Transformation from './componetns/transformation/Transformation'
+import TransformationManu from './componetns/transformation/TransformationManu'
 
 import JsonShcemaPropertiesBuilder from '../../utils/jsonschema/JsonShcemaPropertiesBuilder'
 import './dndStyle.css'
@@ -39,11 +40,13 @@ function MatchPage({ jsonSchema, inputProperties }) {
     <div className="match-page">
       <div className="match-container">
         <ComparePanle properties={inputProperties} />
-        <Transformation updateTrasnformItem={updateTrasnformItem} dropedItem={transformItem} />
+        <div className="transform-container">
+          <Transformation updateTrasnformItem={updateTrasnformItem} dropedItem={transformItem} />
+          {transformItem && <TransformationManu />}
+        </div>
         <JsonSchemaPanle properties={properties} addPair={addPair} customDrop={transformItem} />
 
       </div>
-
       <div className={`pairs-drawer-container ${pairsWindowOpen ? "open" : ""}`}>
         <div className="pairs-drawer ">
           <div className={`drawer-button ${pairsWindowOpen ? "open" : ""}`} onClick={() => setPairsWindowOpen(!pairsWindowOpen)} >
