@@ -13,15 +13,17 @@ function DragItem({ property }) {
   })
 
   const offset = property.level.length * BASE_OFFSET
+
   return <div className={`box-outer ${property.disabled && "disabled"} `} ref={dragRef}  >
     <div className={`main_box ${property.disabled && "disabled"} ${property.childOfComplex && "array"}`} style={{ width: `calc(${BASE_WIDTH} - ${offset}px)`, marginLeft: offset }}>
-      <div>
+      <div className="property-text-container">
         <div className="propery-key">
           {property.key}
-          <div>-</div>
         </div>
-        <div className="propery-description">
-          {property.description}
+        {property.description && <div className="property-spacer">-</div>}
+
+        <div className="text-description ">
+          <span>{property.description}</span>
         </div>
       </div>
     </div>

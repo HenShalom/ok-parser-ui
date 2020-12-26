@@ -36,9 +36,16 @@ function DropItem({ property, addPair, customDrop }) {
           <div className='bar left'></div>
         </React.Fragment>
       }
-      <span>
-        {property.key}
-      </span>
+      <div className="property-text-container">
+        <div className="propery-key">
+          {property.key}
+        </div>
+        {property.description && <div className="property-spacer">-</div>}
+
+        <div className="text-description ">
+          <span>{property.description}</span>
+        </div>
+      </div>
     </div>
   </div>
 
