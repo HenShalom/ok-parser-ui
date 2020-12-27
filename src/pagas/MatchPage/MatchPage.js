@@ -10,7 +10,7 @@ import './MatchPageStyle.css'
 
 
 function MatchPage({ jsonSchema, inputProperties }) {
-    const [properties, setProperties] = useState([])
+  const [properties, setProperties] = useState([])
   const [pairs, setpairs] = useState([])
   const [transformItem, setTransformItem] = useState(null)
   const [preTransformPair, setPreTransformPair] = useState(null)
@@ -43,8 +43,9 @@ function MatchPage({ jsonSchema, inputProperties }) {
 
   const updateTrasnformItem = (value) => {
     setTransformItem(value)
+  }
 
-    return (
+  return (
     <div className="match-page">
       <div className="match-container">
         <ComparePanle properties={inputProperties} />
@@ -57,7 +58,7 @@ function MatchPage({ jsonSchema, inputProperties }) {
           customDrop={preTransformPair ? null : transformItem} />
 
       </div>
-      <SelectedTransformation  pairs={pairs} />
+      <SelectedTransformation pairs={pairs} />
     </div>
   );
 }
