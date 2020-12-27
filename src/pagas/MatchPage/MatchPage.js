@@ -3,15 +3,14 @@ import JsonSchemaPanle from './componetns/fields/JsonSchemaPanle'
 import ComparePanle from './componetns/fields/ComparePanle'
 import Transformation from './componetns/transformation/Transformation'
 import TransformationManu from './componetns/transformation/TransformationManu'
-
+import SelectedTransformation from './componetns/selected/SelectedTransformation'
 import JsonShcemaPropertiesBuilder from '../../utils/jsonschema/JsonShcemaPropertiesBuilder'
 import './dndStyle.css'
 import './MatchPageStyle.css'
 
 
 function MatchPage({ jsonSchema, inputProperties }) {
-  const [pairsWindowOpen, setPairsWindowOpen] = useState(false)
-  const [properties, setProperties] = useState([])
+    const [properties, setProperties] = useState([])
   const [pairs, setpairs] = useState([])
   const [transformItem, setTransformItem] = useState(null)
   const [preTransformPair, setPreTransformPair] = useState(null)
@@ -24,68 +23,41 @@ function MatchPage({ jsonSchema, inputProperties }) {
   }, [jsonSchema])
 
 
-  const addPair = (matchProperty, currentProperty) => {
+  const addPair = (input, output, transformation) => {
     setTransformItem(null)
     //todo: add check of type and so on 
-    matchProperty.hideProperty()
-    currentProperty.hideProperty()
-    setpairs([...pairs, [matchProperty, currentProperty]])
+    input.hideProperty()
+    output.hideProperty()
+    setpairs([...pairs, { input, output, transformation }])
   }
 
-  const addTransformPair = (matchProperty, currentProperty) => {
-    setPreTransformPair({ matchProperty, currentProperty })
+  const addPairWithTransformation = (transformation) => {
+    addPair(preTransformPair.input, preTransformPair.output, transformation)
+    setPreTransformPair(null)
+  }
+
+  const addTransformPair = (input, output) => {
+    setPreTransformPair({ input, output })
 
   }
 
   const updateTrasnformItem = (value) => {
     setTransformItem(value)
-  }
-  console.log("transformItem", transformItem)
 
-  const on = true
-  return (
+    return (
     <div className="match-page">
       <div className="match-container">
         <ComparePanle properties={inputProperties} />
         <div className="transform-container">
           <Transformation updateTrasnformItem={updateTrasnformItem} transformPair={preTransformPair} dropedItem={transformItem} />
-          {preTransformPair && <TransformationManu />}
+          {preTransformPair && <TransformationManu addPair={addPairWithTransformation} />}
         </div>
         <JsonSchemaPanle properties={properties}
           addPair={transformItem ? addTransformPair : addPair}
           customDrop={preTransformPair ? null : transformItem} />
 
       </div>
-
-
-      {/*  transformation menu */}
-      <div className={`pairs-drawer-container ${pairsWindowOpen ? "open" : ""}`}>
-        <div className="pairs-drawer ">
-          <div className={`drawer-button ${pairsWindowOpen ? "open" : ""}`} onClick={() => setPairsWindowOpen(!pairsWindowOpen)} >
-            {pairsWindowOpen ? "close" : "open"}
-          </div>
-          <div className="pairs-container" id="style-2">
-            {pairs.map(([from, to]) => {
-              return <div className={`pair ${pairsWindowOpen ? "open" : ""}`}>
-                <div className="pair-item">
-                  {from.key}
-                </div>
-                <div className="transfrom-arrow">
-                  <div className="long-arrow-right"></div>
-                  {on && <div className="pair-item transformation">
-                    int to string
-                  </div>}
-                  {on && <div className="long-arrow-right"></div>}
-
-                </div>
-                <div className="pair-item">
-                  {to.key}
-                </div>
-              </div>
-            })}
-          </div>
-        </div>
-      </div>
+      <SelectedTransformation  pairs={pairs} />
     </div>
   );
 }
