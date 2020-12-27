@@ -2,6 +2,7 @@ import './App.css';
 import MatchPage from './pagas/MatchPage/MatchPage'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+
 import JsonShcemaPropertiesBuilder from './utils/jsonschema/JsonShcemaPropertiesBuilder'
 
 
@@ -45,7 +46,7 @@ const deptSchema = {
           "properties": {
             "name": {
               "type": "string",
-              "description": "The name of the vegetable."
+              "description": "The name of the vegetable. very long test"
             },
             "lastName": {
               "type": "string",

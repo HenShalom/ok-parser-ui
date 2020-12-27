@@ -1,22 +1,30 @@
 import React, { useState } from 'react'
 import transformations from '../../../../consts/transformations'
 import TransformationOptionsContainer from './transformationOptions/Container'
+
 import "./TransformationManu.css"
 
-const BASE_DELAY = 1;
+const BASE_DELAY = 0.5;
 const MULTIPLAYER_DELAY = 0.1;
 
-function TransformationManu() {
+function TransformationManu({ addPair }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [selectedTransforamtion, setSelectedTransforamtion] = useState(null)
 
   const handleCloseModal = () => setIsOpen(false)
 
-  const selectTransformation = () => {
+  const selectTransformation = (id) => {
+    setSelectedTransforamtion(id)
     setIsOpen(true)
+  }
+  const addTransformation = () => {
+    addPair(selectedTransforamtion)
+    setIsOpen(false)
   }
 
   return (<div className="transformation-select">
-    <TransformationOptionsContainer isOpen={isOpen} onRequestClose={handleCloseModal} />
+    <TransformationOptionsContainer isOpen={isOpen} addTransformation={addTransformation} onRequestClose={handleCloseModal} />
+
     {
       Object.entries(transformations).map(([id, { name }], i) => (
         <div className="transformation-container" id={id}>
