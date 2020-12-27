@@ -149,17 +149,42 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: start;
-	width: 15vw;
+	width: 25vw;
+	height: 70vh;
+	overflow: hidden;
+}
+.transform-icon-container {
+	position: relative;
+}
+.transform-icon-text {
+	color: #000;
+	position: absolute;
+	top: calc(50% + 5vh);
+	width: 36%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 2.5vh;
+	transition: 0.2s;
+	text-align: center;
 }
 
 .transform-icon {
-	width: 8vw;
+	width: 24vw;
+	margin-top: 10vh;
+	transition: 2s;
 }
+
 .transform-icon.pre-active {
 	animation: spin 3s linear infinite;
 }
 
+.transform-icon-text.active {
+	opacity: 0;
+}
+
 .transform-icon.active {
+	width: 8vw;
+	margin-top: 0vh;
 	animation: spin 3s linear infinite;
 	filter: invert(14%) sepia(100%) saturate(7240%) hue-rotate(321deg) brightness(85%) contrast(89%);
 }

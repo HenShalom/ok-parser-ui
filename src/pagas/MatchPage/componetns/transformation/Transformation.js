@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDrop } from 'react-dnd'
-import { BASE_OFFSET, BASE_WIDTH } from '../../../../consts/const'
 import { DEFAULT, ARRAY_CHILD } from '../utils'
 
-function Transformation({ updateTrasnformItem, dropedItem }) {
-  const [{ isOver, canDrop }, dropRef] = useDrop({
+function Transformation({ updateTrasnformItem, dropedItem, transformPair }) {
+  const [{ canDrop }, dropRef] = useDrop({
     accept: [DEFAULT, ARRAY_CHILD],
     canDrop: () => true,
     drop: (value) => {
@@ -16,13 +15,17 @@ function Transformation({ updateTrasnformItem, dropedItem }) {
       canDrop: !!monitor.canDrop(),
     }),
   });
+  console.log(transformPair)
 
 
-
-  return (<div ref={dropRef} >
+  return (<div ref={dropRef} className="transform-icon-container">
     <img alt="tranform"
-      className={`transform-icon ${dropedItem && "active"} ${canDrop && "pre-active"}`}
+      className={`transform-icon ${transformPair && "active"} ${dropedItem && "pre-active"}`}
       src="./transform.png" />
+    <div className={`transform-icon-text ${transformPair && "active"}`}    >
+      {dropedItem ? "Select item to transform into" : "Drag input to transform data"}
+    </div>
+
 
   </div>)
 }

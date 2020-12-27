@@ -14,6 +14,7 @@ function MatchPage({ jsonSchema, inputProperties }) {
   const [properties, setProperties] = useState([])
   const [pairs, setpairs] = useState([])
   const [transformItem, setTransformItem] = useState(null)
+  const [preTransformPair, setPreTransformPair] = useState(null)
 
 
   useEffect(() => {
@@ -31,9 +32,15 @@ function MatchPage({ jsonSchema, inputProperties }) {
     setpairs([...pairs, [matchProperty, currentProperty]])
   }
 
+  const addTransformPair = (matchProperty, currentProperty) => {
+    setPreTransformPair({ matchProperty, currentProperty })
+
+  }
+
   const updateTrasnformItem = (value) => {
     setTransformItem(value)
   }
+  console.log("transformItem", transformItem)
 
   const on = true
   return (
@@ -41,12 +48,17 @@ function MatchPage({ jsonSchema, inputProperties }) {
       <div className="match-container">
         <ComparePanle properties={inputProperties} />
         <div className="transform-container">
-          <Transformation updateTrasnformItem={updateTrasnformItem} dropedItem={transformItem} />
-          {transformItem && <TransformationManu />}
+          <Transformation updateTrasnformItem={updateTrasnformItem} transformPair={preTransformPair} dropedItem={transformItem} />
+          {preTransformPair && <TransformationManu />}
         </div>
-        <JsonSchemaPanle properties={properties} addPair={addPair} customDrop={transformItem} />
+        <JsonSchemaPanle properties={properties}
+          addPair={transformItem ? addTransformPair : addPair}
+          customDrop={preTransformPair ? null : transformItem} />
 
       </div>
+
+
+      {/*  transformation menu */}
       <div className={`pairs-drawer-container ${pairsWindowOpen ? "open" : ""}`}>
         <div className="pairs-drawer ">
           <div className={`drawer-button ${pairsWindowOpen ? "open" : ""}`} onClick={() => setPairsWindowOpen(!pairsWindowOpen)} >

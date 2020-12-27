@@ -1,0 +1,18 @@
+.transformation-modal {
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	background: #ffffff;
+	outline: none;
+	left: 25%;
+	top: 25%;
+}
+
+.transformation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+	background-color: #545454bf;
+}
