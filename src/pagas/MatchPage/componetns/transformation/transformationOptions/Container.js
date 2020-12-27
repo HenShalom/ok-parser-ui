@@ -7,8 +7,14 @@ import './ContainerStyle.css'
 
 function TransformationOptionsContainer({ isOpen, onRequestClose, addTransformation, transformation }) {
   const [transformationSettings, setTransformationSettings] = useState({})
+
+  const onChange = (changeData) => {
+    setTransformationSettings(Object.assign({}, transformationSettings, changeData))
+  }
+
   return (
     <Modal
+      ariaHideApp={false}
       className="transformation-modal"
       overlayClassName="transformation-overlay"
       isOpen={isOpen}
@@ -17,10 +23,10 @@ function TransformationOptionsContainer({ isOpen, onRequestClose, addTransformat
       <div className="transformation-name">
         Date Formatting:
       </div>
-      <DataFromatting onChange={setTransformationSettings} settings={transformationSettings} />
+      <DataFromatting onChange={onChange} settings={transformationSettings} />
       <div className="transformation-modal-container">
         <div className="modal-button ok"
-          onClick={addTransformation}>
+          onClick={() => addTransformation(transformationSettings)}>
           Add
            </div>
         <div className="modal-button cancel"

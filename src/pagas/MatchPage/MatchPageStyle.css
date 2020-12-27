@@ -156,8 +156,9 @@
 .transform-icon-container {
 	position: relative;
 }
+
 .transform-icon-text {
-	color: #000;
+	color: #777777;
 	position: absolute;
 	top: calc(50% + 5vh);
 	width: 36%;
@@ -169,12 +170,18 @@
 }
 
 .transform-icon {
+	filter: invert(51%) sepia(7%) saturate(8%) hue-rotate(13deg) brightness(90%) contrast(91%);
 	width: 24vw;
 	margin-top: 10vh;
 	transition: 2s;
 }
 
+.transform-icon-text.pre-active {
+	color: #790c5a;
+}
+
 .transform-icon.pre-active {
+	filter: invert(11%) sepia(63%) saturate(4693%) hue-rotate(303deg) brightness(87%) contrast(99%);
 	animation: spin 3s linear infinite;
 }
 

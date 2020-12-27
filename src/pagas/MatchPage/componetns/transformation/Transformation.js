@@ -15,15 +15,14 @@ function Transformation({ updateTrasnformItem, dropedItem, transformPair }) {
       canDrop: !!monitor.canDrop(),
     }),
   });
-  console.log(transformPair)
 
 
   return (<div ref={dropRef} className="transform-icon-container">
     <img alt="tranform"
       className={`transform-icon ${transformPair && "active"} ${dropedItem && "pre-active"}`}
       src="./transform.png" />
-    <div className={`transform-icon-text ${transformPair && "active"}`}    >
-      {dropedItem ? "Select item to transform into" : "Drag input to transform data"}
+    <div className={`transform-icon-text ${transformPair && "active"}  ${dropedItem && "pre-active"}`}>
+      {dropedItem ? "Select output to transform into" : "Drag input to transform data"}
     </div>
 
 

@@ -17,8 +17,8 @@ function TransformationManu({ addPair }) {
     setSelectedTransforamtion(id)
     setIsOpen(true)
   }
-  const addTransformation = () => {
-    addPair(selectedTransforamtion)
+  const addTransformation = (transformation) => {
+    addPair(selectedTransforamtion, transformation)
     setIsOpen(false)
   }
 
@@ -27,7 +27,7 @@ function TransformationManu({ addPair }) {
 
     {
       Object.entries(transformations).map(([id, { name }], i) => (
-        <div className="transformation-container" id={id}>
+        <div className="transformation-container" key={id}>
           <div className="transformation-option" style={{ animationDelay: `${BASE_DELAY + i * MULTIPLAYER_DELAY}s` }} onClick={() => selectTransformation(id)}>
             {name}
           </div>

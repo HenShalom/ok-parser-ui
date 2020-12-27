@@ -31,8 +31,8 @@ function MatchPage({ jsonSchema, inputProperties }) {
     setpairs([...pairs, { input, output, transformation }])
   }
 
-  const addPairWithTransformation = (transformation) => {
-    addPair(preTransformPair.input, preTransformPair.output, transformation)
+  const addPairWithTransformation = (transformation, transformationSettings) => {
+    addPair(preTransformPair.input, preTransformPair.output, { transformation, settings: transformationSettings })
     setPreTransformPair(null)
   }
 
