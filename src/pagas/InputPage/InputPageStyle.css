@@ -1,0 +1,67 @@
+.input-page-container {
+	display: flex;
+}
+
+.input-options-container {
+	transition: linear 1s;
+}
+
+.start-button {
+	cursor: pointer;
+	margin: 2vh 2vw;
+	padding: 2vh 2vw;
+	color: #790c5a;
+	border: #790c5a 0.6vh solid;
+	border-radius: 1vh;
+}
+
+.start-button:hover {
+  background-color: #cc0e74;
+  color: #fff;
+	border: #fff 0.6vh solid;
+
+}
+
+.input-options-container.active {
+	transform: translateX(-25vw);
+}
+
+.input-options {
+	color: #cc0e74;
+	margin: 4vh;
+	padding: 2vh 2vw;
+	border: 1vh solid #cc0e74;
+	border-radius: 3vh;
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+.input-options:hover {
+	background-color: #ffffff60;
+}
+
+.input-options.active {
+	background-color: #fff;
+}
+
+.input-page-title {
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 5vh;
+	font-weight: bold;
+	top: 10px;
+	position: absolute;
+	color: #cc0e74;
+}
+
+.input-settings-container {
+	top: 50%;
+	left: 60%;
+	transition: linear 1s;
+	transform: translate(150%, -50%);
+	position: absolute;
+}
+
+.input-settings-container.active {
+	transform: translate(-30%, -50%);
+}
