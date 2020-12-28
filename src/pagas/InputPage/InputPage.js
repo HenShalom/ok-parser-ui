@@ -16,14 +16,13 @@ const SelectedInput = ({ name, selectedInput, setSelectedInput }) => {
     {name}
   </div>
 }
-
 const getInputSettings = (input) => {
   if (input === sources[1])
     return JsonSchemaSettings
   return null
 }
 
-const InputPage = (laodJsonSchema) => {
+const InputPage = ({ laodJsonSchema }) => {
   const [selectedInput, setSelectedInput] = useState(false)
   const SettingsWindow = getInputSettings(selectedInput)
 
@@ -40,7 +39,9 @@ const InputPage = (laodJsonSchema) => {
 
     </div>
     <div className={"input-settings-container " + (selectedInput ? "active" : "")}>
-      {SettingsWindow && <SettingsWindow laodJsonSchema={laodJsonSchema} />}
+      {SettingsWindow && <SettingsWindow laodJsonSchema={(data) => {
+        laodJsonSchema(data)
+      }} />}
     </div>
   </div>
 }

@@ -7,10 +7,10 @@ import testSchema from './consts/testSchema'
 import JsonShcemaPropertiesBuilder from './utils/jsonschema/JsonShcemaPropertiesBuilder'
 import './App.css';
 
-const builder = new JsonShcemaPropertiesBuilder()
 
 const getInputProps = (inputSchema) => {
-  if (!inputSchema) return []
+  if (!inputSchema) return null
+  const builder = new JsonShcemaPropertiesBuilder()
   builder.loadProperties(testSchema)
   return builder.getProperties()
 
@@ -18,15 +18,14 @@ const getInputProps = (inputSchema) => {
 
 function App() {
   const [inputSchema, setInputSchema] = useState(null)
-
   const inputProps = getInputProps(inputSchema)
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="App">
         {inputProps ?
-          <InputPage laodJsonSchema={setInputSchema} /> :
-          <MatchPage inputProperties={inputProps} jsonSchema={testSchema} />
+          <MatchPage inputProperties={inputProps} jsonSchema={testSchema} /> :
+          <InputPage laodJsonSchema={setInputSchema} />
         }
       </div>
     </DndProvider>
