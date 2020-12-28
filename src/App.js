@@ -1,5 +1,6 @@
 import './App.css';
 import MatchPage from './pagas/MatchPage/MatchPage'
+import InputPage from './pagas/InputPage/InputPage'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
@@ -38,10 +39,10 @@ const deptSchema = {
         }
       }
     },
-    "other":{
+    "other": {
       "type": "object",
       "properties": {
-        "person":{
+        "person": {
           "type": "object",
           "properties": {
             "name": {
@@ -73,7 +74,8 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="App">
-        <MatchPage inputProperties={props||[]} jsonSchema={deptSchema} />
+        <InputPage />
+        {/* <MatchPage inputProperties={props ||[]} jsonSchema={deptSchema} /> */}
       </div>
     </DndProvider>
   );
