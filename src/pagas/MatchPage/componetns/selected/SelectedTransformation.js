@@ -11,7 +11,8 @@ function SelectedTransformation({ pairs }) {
         {pairsWindowOpen ? "close" : "open"}
       </div>
       <div className="pairs-container" id="style-2">
-        {pairs.map(({ input, output, transformation: { transformation } }) => {
+        {pairs.map(({ input, output, transformation: transformationSettings }) => {
+          const transformation = transformationSettings ? transformationSettings.transformation : null
           return <div className={`pair ${pairsWindowOpen ? "open" : ""}`} key={input.key + output.key}>
             <div className="pair-item">
               {input.key}
