@@ -4,7 +4,7 @@ import './style.css'
 
 
 
-const JsonSchemaSettings = () => {
+const JsonSchemaSettings = ({ laodJsonSchema }) => {
   return <div className="json-schema-settings-container">
     <JSONInput
       style={{ body: { fontSize: 20 } }}
@@ -13,7 +13,7 @@ const JsonSchemaSettings = () => {
       height='70vh'
       width='35vw'
     />
-    <div className="start-button">
+    <div className="start-button" onClick={laodJsonSchema}>
       Done
     </div>
   </div>
