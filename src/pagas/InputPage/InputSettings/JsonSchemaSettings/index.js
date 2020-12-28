@@ -4,7 +4,7 @@ import './style.css'
 
 
 
-const JsonSchemaSettings = ({ laodJsonSchema }) => {
+const JsonSchemaSettings = ({ loadJsonSchema }) => {
   const [jsonData, setJsonData] = useState(null)
 
   return <div className="json-schema-settings-container">
@@ -16,7 +16,7 @@ const JsonSchemaSettings = ({ laodJsonSchema }) => {
       width='35vw'
       onChange={({ jsObject }) => setJsonData(jsObject)}
     />
-    <div className="start-button" onClick={() => laodJsonSchema(jsonData)}>
+    <div className="start-button" onClick={() => loadJsonSchema(jsonData)}>
       Done
     </div>
   </div>

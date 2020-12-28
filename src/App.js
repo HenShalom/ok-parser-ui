@@ -25,7 +25,7 @@ function App() {
       <div className="App">
         {inputProps ?
           <MatchPage inputProperties={inputProps} jsonSchema={testSchema} /> :
-          <InputPage laodJsonSchema={setInputSchema} />
+          <InputPage loadJsonSchema={setInputSchema} />
         }
       </div>
     </DndProvider>
