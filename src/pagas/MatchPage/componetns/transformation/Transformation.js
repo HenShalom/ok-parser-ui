@@ -3,7 +3,7 @@ import { useDrop } from 'react-dnd'
 import { DEFAULT, ARRAY_CHILD } from '../utils'
 
 function Transformation({ updateTrasnformItem, dropedItem, transformPair }) {
-  const [{ canDrop }, dropRef] = useDrop({
+  const [, dropRef] = useDrop({
     accept: [DEFAULT, ARRAY_CHILD],
     canDrop: () => true,
     drop: (value) => {
