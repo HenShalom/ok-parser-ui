@@ -1,3 +1,5 @@
+import { DATE_FORMAT_MODAL } from './transformationModals'
+
 const transformations = {
   "intToString": {
     name: "int to string"
@@ -7,7 +9,9 @@ const transformations = {
   },
   "dataForamt": {
     name: "date format",
-    options: ""
+    modal: DATE_FORMAT_MODAL,
+
+  
   }
 }
 

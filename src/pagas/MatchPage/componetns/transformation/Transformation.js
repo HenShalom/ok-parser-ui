@@ -7,7 +7,6 @@ function Transformation({ updateTrasnformItem, dropedItem, transformPair }) {
     accept: [DEFAULT, ARRAY_CHILD],
     canDrop: () => true,
     drop: (value) => {
-      console.log(value)
       updateTrasnformItem(value)
     },
     collect: (monitor) => ({

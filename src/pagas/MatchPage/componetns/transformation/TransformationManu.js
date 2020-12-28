@@ -22,13 +22,23 @@ function TransformationManu({ addPair }) {
     setIsOpen(false)
   }
 
+  const transformationsClick = (id) => () => {
+    if (transformations[id].modal)
+      selectTransformation(id)
+    else
+      addPair(id, {})
+  }
+
   return (<div className="transformation-select">
-    <TransformationOptionsContainer isOpen={isOpen} addTransformation={addTransformation} onRequestClose={handleCloseModal} />
+    <TransformationOptionsContainer isOpen={isOpen}
+      addTransformation={addTransformation}
+      onRequestClose={handleCloseModal}
+      transformation={selectedTransforamtion} />
 
     {
       Object.entries(transformations).map(([id, { name }], i) => (
         <div className="transformation-container" key={id}>
-          <div className="transformation-option" style={{ animationDelay: `${BASE_DELAY + i * MULTIPLAYER_DELAY}s` }} onClick={() => selectTransformation(id)}>
+          <div className="transformation-option" style={{ animationDelay: `${BASE_DELAY + i * MULTIPLAYER_DELAY}s` }} onClick={transformationsClick(id)}>
             {name}
           </div>
         </div>
