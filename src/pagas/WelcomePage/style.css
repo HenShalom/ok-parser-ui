@@ -1,0 +1,14 @@
+.welcome-logo {
+	width: 20%;
+	position: absolute;
+	left: 50%;
+	top: 35%;
+	transform: translate(-50%, -50%);
+}
+.parser-button-container {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+	top: 65%;
+
+}
