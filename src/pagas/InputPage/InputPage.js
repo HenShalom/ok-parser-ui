@@ -36,7 +36,9 @@ const CurrentInput = ({ name, onClick }) => {
 const getInputSettings = (input) => {
   if (input === SOURCES.Schema[0])
     return JsonSchemaSettings
-  return () => <div className="not-implemented">Not Implemented YET! :)</div>
+  if (input !== null)
+    return () => <div className="not-implemented">Not Implemented YET! :)</div>
+  return null
 }
 
 const InputPage = ({ loadJsonSchema }) => {
