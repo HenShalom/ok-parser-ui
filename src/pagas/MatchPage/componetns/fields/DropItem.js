@@ -26,16 +26,8 @@ function DropItem({ property, addPair, customDrop }) {
   const offset = property.level.length * BASE_OFFSET
 
 
-  return (<div className={`box-outer ${property.disabled && "disabled"}`} ref={dropRef} onClick={checkCustomDrop}>
-    <div className={`main_box ${property.disabled && "disabled"} ${property.childOfComplex && "array"}`} style={{ width: `calc(${BASE_WIDTH} - ${offset}px)`, marginLeft: offset }}>
-      {(canDrop || canClick) &&
-        <React.Fragment>
-          <div className='bar top'></div>
-          <div className='bar right delay'></div>
-          <div className='bar bottom delay'></div>
-          <div className='bar left'></div>
-        </React.Fragment>
-      }
+  return (<div className={`box-outer  ${property.disabled && "disabled"}`} ref={dropRef} onClick={checkCustomDrop}>
+    <div className={`main_box ${(canDrop || canClick) && "drop-zone"} ${property.disabled && "disabled"} ${property.childOfComplex && "array"}`} style={{ width: `calc(${BASE_WIDTH} - ${offset}px)`, marginLeft: offset }}>
       <div className="property-text-container">
         <div className="propery-key">
           {property.key}
