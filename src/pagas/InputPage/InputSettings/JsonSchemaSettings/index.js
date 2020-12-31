@@ -13,7 +13,7 @@ const JsonSchemaSettings = ({ loadJsonSchema }) => {
       id='a_unique_id'
       placeholder={{ "whatToDo": "place json schema here" }}
       height='70vh'
-      width='35vw'
+      width='60vw'
       onChange={({ jsObject }) => setJsonData(jsObject)}
     />
     <div className="start-button" onClick={() => loadJsonSchema(jsonData)}>

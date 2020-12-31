@@ -2,46 +2,99 @@ import React, { useState } from 'react'
 import JsonSchemaSettings from './InputSettings/JsonSchemaSettings'
 import './InputPageStyle.css'
 
-const sources = [
-  "Kafka",
-  "JSON Schema",
-  "CSV",
-  "JSON Sample"
+const INPUT_TYPES = [
+  "Schema",
+  "Auto Detect"
 ]
 
+const SOURCES = {
+  "Schema": [
+    "JSON Schema",
+  ],
+  "Auto Detect": [
+    "Kafka",
+    "CSV",
+    "JSON Sample"
+  ]
+}
 
-const SelectedInput = ({ name, selectedInput, setSelectedInput }) => {
-  return <div onClick={() => selectedInput === name ? setSelectedInput(null) : setSelectedInput(name)}
-    className={"input-options " + (selectedInput === name ? "active" : "")}>
+
+const SelectedInput = ({ name, value, setValue }) => {
+  return <div onClick={() => value === name ? setValue(null) : setValue(name)}
+    className={"input-options " + (value === name ? "active" : "")}>
     {name}
   </div>
 }
+
+const CurrentInput = ({ name, onClick }) => {
+  return <div
+    className="selected-options-option" onClick={onClick}>
+    {name}
+  </div>
+}
+
 const getInputSettings = (input) => {
-  if (input === sources[1])
+  if (input === SOURCES.Schema[0])
     return JsonSchemaSettings
-  return null
+  return () => <div className="not-implemented">Not Implemented YET! :)</div>
 }
 
 const InputPage = ({ loadJsonSchema }) => {
+  const [selectedInputType, setSelectedInputType] = useState(false)
   const [selectedInput, setSelectedInput] = useState(false)
+
+  const clearOptions = () => {
+    setSelectedInput(null)
+    setSelectedInputType(null)
+
+  }
+
   const SettingsWindow = getInputSettings(selectedInput)
+  console.log(SettingsWindow)
 
   return <div className="input-page-container">
-    <div className="input-page-title">Select Schema Input</div>
-    <div className={"input-options-container " + (selectedInput ? "active" : "")}>
-      {sources.map(key => (
-        <SelectedInput
-          id={key}
-          name={key}
-          selectedInput={selectedInput}
-          setSelectedInput={setSelectedInput} />
-      ))}
-
+    <div className={selectedInputType && selectedInput && "exit"}>
+      <div>
+        Please Select Input Type:
     </div>
+      <div className="options-container">
+        {INPUT_TYPES.map(key => (
+          <SelectedInput
+            key={key}
+            name={key}
+            value={selectedInputType}
+            setValue={setSelectedInputType} />
+        ))}
+      </div>
+      {selectedInputType && <div>
+        Please Select Input Source:
+    </div>}
+      {selectedInputType && <div className="options-container">
+        {SOURCES[selectedInputType].map(key => (
+          <SelectedInput
+            key={key}
+            name={key}
+            value={selectedInput}
+            setValue={setSelectedInput} />
+        ))}
+      </div>}
+    </div>
+
+    <div className={`selected-options ${selectedInputType && selectedInput && "enter"}`}>
+      <CurrentInput
+        name={selectedInputType}
+      />
+      <CurrentInput
+        name={selectedInput}
+      />
+      <CurrentInput
+        name={"X"}
+        onClick={clearOptions}
+      />
+    </div>
+
     <div className={"input-settings-container " + (selectedInput ? "active" : "")}>
-      {SettingsWindow && <SettingsWindow loadJsonSchema={(data) => {
-        loadJsonSchema(data)
-      }} />}
+      {SettingsWindow && <SettingsWindow loadJsonSchema={loadJsonSchema} />}
     </div>
   </div>
 }
