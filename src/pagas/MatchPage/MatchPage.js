@@ -9,7 +9,7 @@ import './dndStyle.css'
 import './MatchPageStyle.css'
 
 
-function MatchPage({ jsonSchema, inputProperties }) {
+function MatchPage({ jsonSchema, inputProperties, completeParserMaker }) {
   const [properties, setProperties] = useState([])
   const [pairs, setpairs] = useState([])
   const [transformItem, setTransformItem] = useState(null)
@@ -58,7 +58,8 @@ function MatchPage({ jsonSchema, inputProperties }) {
           customDrop={preTransformPair ? null : transformItem} />
 
       </div>
-      <SelectedTransformation pairs={pairs} />
+      <SelectedTransformation pairs={pairs} onClick={completeParserMaker} />
+      <div className="complete-button">Complete</div>
     </div>
   );
 }

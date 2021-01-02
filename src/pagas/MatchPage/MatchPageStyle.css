@@ -50,10 +50,28 @@
 	align-self: center;
 	color: black;
 }
+
+.complete-button {
+	position: absolute;
+	right: 2vw;
+	bottom: 1vw;
+	color: #8a2846;
+	border: solid 0.5vh #8a2846;
+	padding: 1vh 1vw;
+	border-radius: 2vh;
+	font-size: 3vh;
+	cursor: pointer;
+}
+.complete-button:hover {
+	color: #ff7aa2;
+	border: 0.5vh solid #ff7aa2;
+}
+
 .drawer-button.open {
 	top: -14px;
 	color: #3e3d3d;
 }
+
 .pairs-drawer-container {
 	position: absolute;
 	border: solid 0px #8a2846;
