@@ -48,7 +48,7 @@ function MatchPage({ jsonSchema, inputProperties }) {
   return (
     <div className="match-page">
       <div className="match-container">
-        <ComparePanle properties={inputProperties} />
+        <ComparePanle properties={inputProperties} isTransformation={!!transformItem} />
         <div className="transform-container">
           <Transformation updateTrasnformItem={updateTrasnformItem} transformPair={preTransformPair} dropedItem={transformItem} />
           {preTransformPair && <TransformationManu addPair={addPairWithTransformation} />}
