@@ -38,12 +38,11 @@
 
 .main_box.disabled {
 	background: #808080;
-	border: 3px dashed #e6739f;
 	color: #ffffff;
 	cursor: no-drop;
 }
 .main_box.array {
-	border: 3px dashed blue;
+	border: 3px solid #ff7aa2;
 }
 .main_box.array.drop-zone {
 	animation-name: glow-array;
@@ -90,16 +89,16 @@
 
 @keyframes glow-array {
 	0% {
-		box-shadow: 0 0 5px blue;
-		background-color: blue;
+		box-shadow: 0 0 5px #ff7aa2;
+		background-color: #ff7aa2;
 	}
 	60% {
 		border: 3px solid;
 		background: #ffe0e9;
 	}
 	100% {
-		box-shadow: 0 0 5px blue;
-		background-color: blue;
+		box-shadow: 0 0 5px #ff7aa2;
+		background-color: #ff7aa2;
 	}
 }
 
