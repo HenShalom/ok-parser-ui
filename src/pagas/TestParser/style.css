@@ -1,0 +1,27 @@
+.test-parser-container {
+	height: 100%;
+	width: 100%;
+}
+
+.wip-text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60%;
+	color: #8a2846;
+}
+.complete-button {
+	position: absolute;
+	right: 2vw;
+	bottom: 1vw;
+	color: #8a2846;
+	border: solid 0.5vh #8a2846;
+	padding: 1vh 1vw;
+	border-radius: 2vh;
+	font-size: 3vh;
+	cursor: pointer;
+}
+.complete-button:hover {
+	color: #ff7aa2;
+	border: 0.5vh solid #ff7aa2;
+}
