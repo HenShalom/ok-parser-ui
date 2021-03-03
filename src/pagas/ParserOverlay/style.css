@@ -1,0 +1,44 @@
+.parser-overlay-container {
+	width: 100vw;
+	height: 100vh;
+}
+.stage-viewer {
+	width: 12vw;
+	background: #ffe0e9;
+	height: 100vh;
+	box-shadow: 1px 10px 15px 2px rgba(0, 0, 0, 0.48);
+	border-right: solid 0.5vh #e05780;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	flex-direction: column;
+	padding-top: 2%;
+}
+.page-container {
+	display: flex;
+}
+.stage-container {
+  width: 88vw;
+  overflow: hidden;
+
+}
+
+.stage-viewer-stage {
+	cursor: pointer;
+	height: 13%;
+	width: 100%;
+	border: solid 0.5vh #b9375e;
+	border-right: solid 0.5vh transparent;
+	margin: 6% 0;
+	border-radius: 0.5vh;
+	box-shadow: 0px 4px 8px 1px rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #8a2846;
+}
+
+.stage-viewer-stage.active {
+	background-color: #8a2846;
+	color: #ffe0e9;
+}

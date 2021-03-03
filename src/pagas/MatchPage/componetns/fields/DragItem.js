@@ -3,10 +3,11 @@ import { useDrag } from 'react-dnd'
 import { BASE_OFFSET, BASE_WIDTH } from '../../../../consts/const'
 import { getPropType } from '../utils'
 
-function DragItem({ property }) {
+function DragItem({ property, isTransformation }) {
 
   const [{ draging }, dragRef] = useDrag({
     item: { type: getPropType(property, "drag"), property },
+    canDrag: () => !isTransformation,
     collect: (monitor) => ({
       draging: !!monitor.isDragging()
     })
