@@ -41,7 +41,7 @@ const getInputSettings = (input) => {
   return null
 }
 
-const InputPage = ({ loadJsonSchema }) => {
+const InputPage = ({ completeInputSchema }) => {
   const [selectedInputType, setSelectedInputType] = useState(false)
   const [selectedInput, setSelectedInput] = useState(false)
 
@@ -52,10 +52,9 @@ const InputPage = ({ loadJsonSchema }) => {
   }
 
   const SettingsWindow = getInputSettings(selectedInput)
-  console.log(SettingsWindow)
 
   return <div className="input-page-container">
-    <div className={selectedInputType && selectedInput && "exit"}>
+    <div className={`${selectedInputType && selectedInput && "exit"}`}>
       <div>
         Please Select Input Type:
     </div>
@@ -96,7 +95,7 @@ const InputPage = ({ loadJsonSchema }) => {
     </div>
 
     <div className={"input-settings-container " + (selectedInput ? "active" : "")}>
-      {SettingsWindow && <SettingsWindow loadJsonSchema={loadJsonSchema} />}
+      {SettingsWindow && <SettingsWindow loadJsonSchema={completeInputSchema} />}
     </div>
   </div>
 }

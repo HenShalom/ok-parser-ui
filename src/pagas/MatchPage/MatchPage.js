@@ -9,9 +9,10 @@ import './dndStyle.css'
 import './MatchPageStyle.css'
 
 
-function MatchPage({ jsonSchema, inputProperties, completeParserMaker }) {
+function MatchPage({ jsonSchema, inputSchema, completeParserCreation, mapPairs }) {
   const [properties, setProperties] = useState([])
-  const [pairs, setpairs] = useState([])
+  const [inputProps, setInputProps] = useState([])
+  const [pairs, setpairs] = useState(mapPairs || [])
   const [transformItem, setTransformItem] = useState(null)
   const [preTransformPair, setPreTransformPair] = useState(null)
 
@@ -21,6 +22,13 @@ function MatchPage({ jsonSchema, inputProperties, completeParserMaker }) {
     builder.loadProperties(jsonSchema)
     setProperties(builder.getProperties())
   }, [jsonSchema])
+
+  useEffect(() => {
+    const builder = new JsonShcemaPropertiesBuilder()
+    builder.loadProperties(inputSchema)
+    setInputProps(builder.getProperties())
+  }, [inputSchema])
+
 
 
   const addPair = (input, output, transformation) => {
@@ -48,18 +56,18 @@ function MatchPage({ jsonSchema, inputProperties, completeParserMaker }) {
   return (
     <div className="match-page">
       <div className="match-container">
-        <ComparePanle properties={inputProperties} isTransformation={!!transformItem} />
+        <ComparePanle properties={inputProps} isTransformation={!!transformItem} />
         <div className="transform-container">
           <Transformation updateTrasnformItem={updateTrasnformItem} transformPair={preTransformPair} dropedItem={transformItem} />
           {preTransformPair && <TransformationManu addPair={addPairWithTransformation} />}
         </div>
-        <JsonSchemaPanle properties={properties}
+        {properties && <JsonSchemaPanle properties={properties}
           addPair={transformItem ? addTransformPair : addPair}
-          customDrop={preTransformPair ? null : transformItem} />
+          customDrop={preTransformPair ? null : transformItem} />}
 
       </div>
-      <SelectedTransformation pairs={pairs} onClick={completeParserMaker} />
-      <div className="complete-button">Complete</div>
+      <SelectedTransformation pairs={pairs} />
+      <div className="complete-button" onClick={() => completeParserCreation(pairs)}>Complete</div>
     </div>
   );
 }
