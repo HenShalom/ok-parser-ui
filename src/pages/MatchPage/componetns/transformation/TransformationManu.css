@@ -36,8 +36,7 @@
 
 .transform-icon.pre-active {
 	filter: invert(16%) sepia(19%) saturate(3377%) hue-rotate(301deg) brightness(91%) contrast(89%);
-
-	animation: spin 3s linear infinite;
+	animation: spin 2s linear infinite;
 }
 
 .transform-icon-text.active {
@@ -47,7 +46,7 @@
 .transform-icon.active {
 	width: 6vw;
 	margin-top: 1.5vw;
-	animation: spin 3s linear infinite;
+	animation: spin 2s linear infinite;
 	filter: invert(29%) sepia(49%) saturate(1728%) hue-rotate(307deg) brightness(93%) contrast(92%);
 }
 
