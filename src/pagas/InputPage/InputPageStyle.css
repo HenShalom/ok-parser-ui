@@ -14,7 +14,7 @@
 	margin: 2vh 2vw;
 	padding: 2vh 2vw;
 	color: #602437;
-	border: #602437 0.6vh solid;
+	border: #602437 0.3vh solid;
 	border-radius: 1vh;
 }
 
@@ -27,8 +27,8 @@
 	color: #b9375e;
 	margin: 4vh;
 	padding: 2vh 2vw;
-	border: 1vh solid #b9375e;
-	border-radius: 1vh;
+	border: 0.3vh solid #b9375e;
+	border-radius: 0.8vh;
 	transition: 0.2s;
 	cursor: pointer;
 	width: 12vw;
